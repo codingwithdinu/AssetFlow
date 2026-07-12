@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from odoo import models, fields
+from odoo import models, fields, api
 
 
 class AssetCategory(models.Model):
@@ -23,6 +23,7 @@ class AssetCategory(models.Model):
         compute='_compute_asset_count',
     )
 
+    @api.depends()
     def _compute_asset_count(self):
         for rec in self:
             rec.asset_count = self.env['assetflow.asset'].search_count(

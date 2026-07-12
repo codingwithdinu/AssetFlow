@@ -39,7 +39,7 @@ class AssetFlowDepartment(models.Model):
         compute='_compute_asset_count',
     )
 
-    @api.depends('code')
+    @api.depends()
     def _compute_employee_count(self):
         for rec in self:
             rec.employee_count = self.env['assetflow.employee'].search_count(

@@ -16,6 +16,15 @@ class ReturnAssetWizard(models.TransientModel):
     condition_notes = fields.Text(string='Asset Condition Notes')
 
     def action_return(self):
-        self.allocation_id.actual_return_date = self.return_date
-        self.allocation_id.action_return()
+        self.allocation_id.write({
+            'actual_return_date': self.return_date,
+        })
+        self.allocation_id.asset_id.write({
+            'state': 'available',
+            'employee_id': False,
+        })
+        self.allocation_id.asset_id._log_history(
+            f'Returned by {self.allocation_id.employee_id.name}'
+        )
+        self.allocation_id.write({'state': 'returned'})
         return {'type': 'ir.actions.act_window_close'}
