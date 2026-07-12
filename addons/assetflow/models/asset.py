@@ -61,6 +61,13 @@ class AssetFlowAsset(models.Model):
         ('lost', 'Lost / Missing'),
     ], string='Status', default='available', tracking=True, required=True)
 
+    # ─── Relations ──────────────────────────────────────────────────────
+    asset_history_ids = fields.One2many(
+        'assetflow.asset.history',
+        'asset_id',
+        string='History',
+    )
+
     # ─── Notes ────────────────────────────────────────────────────────
     description = fields.Text(string='Description / Specs')
     notes = fields.Text(string='Internal Notes')

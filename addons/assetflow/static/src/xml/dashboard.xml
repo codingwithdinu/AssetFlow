@@ -1,4 +1,135 @@
 <?xml version="1.0" encoding="utf-8"?>
 <templates>
-    <!-- AssetFlow Dashboard QWeb template placeholder -->
+    <t t-name="assetflow.DashboardView">
+        <div class="container-fluid assetflow-dashboard p-4">
+            <!-- Loading Spinner -->
+            <div id="assetflow-dashboard-loading" class="text-center p-5">
+                <i class="fa fa-spinner fa-spin fa-3x text-primary"></i>
+                <h4 class="mt-3 text-muted">Loading Dashboard...</h4>
+            </div>
+
+            <!-- Dashboard Content (hidden initially) -->
+            <div id="assetflow-dashboard-content" style="display:none;">
+                <!-- KPI Cards Row -->
+                <div class="row mb-4">
+                    <div class="col-sm-6 col-md-4 col-lg mb-3">
+                        <div class="assetflow-kpi-card assetflow-kpi-total">
+                            <h3 id="kpi-total-assets">0</h3>
+                            <p>Total Assets</p>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-4 col-lg mb-3">
+                        <div class="assetflow-kpi-card assetflow-kpi-available">
+                            <h3 id="kpi-available">0</h3>
+                            <p>Available</p>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-4 col-lg mb-3">
+                        <div class="assetflow-kpi-card assetflow-kpi-allocated">
+                            <h3 id="kpi-allocated">0</h3>
+                            <p>Allocated</p>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-4 col-lg mb-3">
+                        <div class="assetflow-kpi-card assetflow-kpi-maintenance">
+                            <h3 id="kpi-maintenance">0</h3>
+                            <p>Maintenance</p>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-4 col-lg mb-3">
+                        <div class="assetflow-kpi-card assetflow-kpi-retired">
+                            <h3 id="kpi-retired">0</h3>
+                            <p>Retired</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Secondary KPI Row -->
+                <div class="row mb-4">
+                    <div class="col-md-3 mb-3">
+                        <div class="card border-info shadow-sm">
+                            <div class="card-body text-center">
+                                <h4 id="kpi-pending-alloc" class="text-info">0</h4>
+                                <small class="text-muted">Pending Allocations</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <div class="card border-success shadow-sm">
+                            <div class="card-body text-center">
+                                <h4 id="kpi-active-bookings" class="text-success">0</h4>
+                                <small class="text-muted">Active Bookings</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <div class="card border-warning shadow-sm">
+                            <div class="card-body text-center">
+                                <h4 id="kpi-open-maint" class="text-warning">0</h4>
+                                <small class="text-muted">Open Maintenance</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <div class="card border-danger shadow-sm">
+                            <div class="card-body text-center">
+                                <h4 id="kpi-pending-transfers" class="text-danger">0</h4>
+                                <small class="text-muted">Pending Transfers</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Charts Row -->
+                <div class="row">
+                    <div class="col-md-6 mb-4">
+                        <div class="card shadow-sm">
+                            <div class="card-header bg-primary text-white">
+                                <strong>Assets by Department</strong>
+                            </div>
+                            <div class="card-body">
+                                <canvas id="chart-department" height="250"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <div class="card shadow-sm">
+                            <div class="card-header bg-success text-white">
+                                <strong>Assets by Category</strong>
+                            </div>
+                            <div class="card-body">
+                                <canvas id="chart-category" height="250"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Latest Assets Table -->
+                <div class="row">
+                    <div class="col-12 mb-4">
+                        <div class="card shadow-sm">
+                            <div class="card-header bg-secondary text-white">
+                                <strong>Recent Assets</strong>
+                            </div>
+                            <div class="card-body p-0">
+                                <table class="table table-striped mb-0" id="recent-assets-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Tag</th>
+                                            <th>Name</th>
+                                            <th>Category</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="recent-assets-body">
+                                        <tr><td colspan="4" class="text-muted text-center">Loading...</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </t>
 </templates>

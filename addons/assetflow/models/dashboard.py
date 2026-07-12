@@ -2,21 +2,13 @@
 from odoo import models, fields, api
 
 
-class AssetFlowDashboard(models.Model):
+class AssetFlowDashboard(models.TransientModel):
     """Model to provide KPI data for the dashboard."""
     _name = 'assetflow.dashboard'
     _description = 'AssetFlow Dashboard KPIs'
-    _auto = False  # No database table - virtual model
+    _auto = True
 
-    total_assets = fields.Integer(string='Total Assets')
-    available = fields.Integer(string='Available')
-    allocated = fields.Integer(string='Allocated')
-    maintenance = fields.Integer(string='Under Maintenance')
-    retired = fields.Integer(string='Retired')
-    pending_allocations = fields.Integer(string='Pending Allocations')
-    active_bookings = fields.Integer(string='Active Bookings')
-    open_maintenance = fields.Integer(string='Open Maintenance')
-    pending_transfers = fields.Integer(string='Pending Transfers')
+    name = fields.Char(string='Name', default='Dashboard')
 
     @api.model
     def get_kpi_data(self):
@@ -41,8 +33,3 @@ class AssetFlowDashboard(models.Model):
                 [('state', 'in', ['draft', 'submitted'])]
             ),
         }
-
-    def default_get(self, fields_list):
-        res = super().default_get(fields_list)
-        res.update(self.get_kpi_data())
-        return res

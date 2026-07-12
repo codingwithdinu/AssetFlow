@@ -1,52 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-    <!-- Dashboard View (client action) -->
-    <record id="view_assetflow_dashboard" model="ir.ui.view">
-        <field name="name">assetflow.dashboard</field>
-        <field name="model">assetflow.dashboard</field>
-        <field name="arch" type="xml">
-            <form string="AssetFlow Dashboard" create="false" edit="false">
-                <sheet>
-                    <h2>📊 AssetFlow – KPI Dashboard</h2>
-
-                    <!-- KPI Cards row -->
-                    <div class="row mt16">
-                        <div class="col-sm-6 col-md-3">
-                            <div class="o_kanban_card text-center p-3 bg-primary text-white rounded">
-                                <h3><field name="total_assets" nolabel="1"/></h3>
-                                <p>Total Assets</p>
-                            </div>
-                        </div>
-                        <div class="col-sm-6 col-md-3">
-                            <div class="o_kanban_card text-center p-3 bg-success text-white rounded">
-                                <h3><field name="available" nolabel="1"/></h3>
-                                <p>Available</p>
-                            </div>
-                        </div>
-                        <div class="col-sm-6 col-md-3">
-                            <div class="o_kanban_card text-center p-3 bg-info text-white rounded">
-                                <h3><field name="allocated" nolabel="1"/></h3>
-                                <p>Allocated</p>
-                            </div>
-                        </div>
-                        <div class="col-sm-6 col-md-3">
-                            <div class="o_kanban_card text-center p-3 bg-warning text-white rounded">
-                                <h3><field name="maintenance" nolabel="1"/></h3>
-                                <p>Maintenance</p>
-                            </div>
-                        </div>
-                    </div>
-                </sheet>
-            </form>
-        </field>
-    </record>
-
-    <!-- Action: Dashboard -->
-    <record id="action_assetflow_dashboard" model="ir.actions.act_window">
+    <!-- Client Action: Dashboard (JS-powered) -->
+    <record id="action_assetflow_dashboard" model="ir.actions.client">
         <field name="name">Dashboard</field>
-        <field name="res_model">assetflow.dashboard</field>
-        <field name="view_mode">form</field>
+        <field name="tag">assetflow.action_dashboard</field>
         <field name="target">main</field>
     </record>
 

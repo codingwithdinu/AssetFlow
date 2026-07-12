@@ -1,0 +1,126 @@
+# AssetFlow – English Translation
+# Copyright (C) 2026 Team BugBusters
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: AssetFlow 17.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-07-12 12:00+0530\n"
+"PO-Revision-Date: 2026-07-12 12:00+0530\n"
+"Last-Translator: Team BugBusters\n"
+"Language-Team: \n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: assetflow
+#: model:ir.model,name:assetflow_model_assetflow_asset
+msgid "Asset"
+msgstr "Asset"
+
+#. module: assetflow
+#: model:ir.model,name:assetflow_model_assetflow_allocation
+msgid "Asset Allocation"
+msgstr "Asset Allocation"
+
+#. module: assetflow
+#: model:ir.model,name:assetflow_model_assetflow_audit
+msgid "Asset Audit"
+msgstr "Asset Audit"
+
+#. module: assetflow
+#: model:ir.model,name:assetflow_model_assetflow_audit_line
+msgid "Audit Line"
+msgstr "Audit Line"
+
+#. module: assetflow
+#: model:ir.model,name:assetflow_model_assetflow_category
+msgid "Asset Category"
+msgstr "Asset Category"
+
+#. module: assetflow
+#: model:ir.model,name:assetflow_model_assetflow_department
+msgid "Department"
+msgstr "Department"
+
+#. module: assetflow
+#: model:ir.model,name:assetflow_model_assetflow_employee
+msgid "Employee"
+msgstr "Employee"
+
+#. module: assetflow
+#: model:ir.model,name:assetflow_model_assetflow_asset_history
+msgid "Asset History Log"
+msgstr "Asset History Log"
+
+#. module: assetflow
+#: model:ir.model,name:assetflow_model_assetflow_maintenance
+msgid "Maintenance Request"
+msgstr "Maintenance Request"
+
+#. module: assetflow
+#: model:ir.model,name:assetflow_model_assetflow_booking
+msgid "Resource Booking"
+msgstr "Resource Booking"
+
+#. module: assetflow
+#: model:ir.model,name:assetflow_model_assetflow_transfer
+msgid "Asset Transfer Request"
+msgstr "Asset Transfer Request"
+
+#. module: assetflow
+#: model:ir.model,name:assetflow_model_assetflow_dashboard
+msgid "AssetFlow Dashboard KPIs"
+msgstr "AssetFlow Dashboard KPIs"
+
+#. module: assetflow
+#: model:ir.model,name:assetflow_model_assetflow_ai_assist
+msgid "AI Assistant Query Log"
+msgstr "AI Assistant Query Log"
+
+#. module: assetflow
+#: model:ir.actions.act_window,name:assetflow_action_assetflow_dashboard
+msgid "Dashboard"
+msgstr "Dashboard"
+
+#. module: assetflow
+#: model:ir.actions.act_window,name:assetflow_action_assetflow_asset
+msgid "Assets"
+msgstr "Assets"
+
+#. module: assetflow
+#: model:ir.actions.act_window,name:assetflow_action_assetflow_allocation
+msgid "Allocations"
+msgstr "Allocations"
+
+#. module: assetflow
+#: model:ir.actions.act_window,name:assetflow_action_assetflow_booking
+msgid "Resource Bookings"
+msgstr "Resource Bookings"
+
+#. module: assetflow
+#: model:ir.actions.act_window,name:assetflow_action_assetflow_maintenance
+msgid "Maintenance Requests"
+msgstr "Maintenance Requests"
+
+#. module: assetflow
+#: model:ir.actions.act_window,name:assetflow_action_assetflow_audit
+msgid "Audits"
+msgstr "Audits"
+
+#. module: assetflow
+#: model:ir.actions.act_window,name:assetflow_action_assetflow_department
+msgid "Departments"
+msgstr "Departments"
+
+#. module: assetflow
+#: model:ir.actions.act_window,name:assetflow_action_assetflow_employee
+msgid "Employees"
+msgstr "Employees"
+
+#. module: assetflow
+#: model:ir.actions.act_window,name:assetflow_action_assetflow_category
+msgid "Asset Categories"
+msgstr "Asset Categories"

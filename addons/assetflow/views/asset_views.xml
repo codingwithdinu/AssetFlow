@@ -90,7 +90,15 @@
                     </group>
                     <notebook>
                         <page string="History" name="history">
-                            <field name="image" widget="image" class="oe_avatar"/>
+                            <field name="asset_history_ids" readonly="1">
+                                <tree>
+                                    <field name="date"/>
+                                    <field name="action"/>
+                                    <field name="employee_id"/>
+                                    <field name="department_id"/>
+                                    <field name="performed_by"/>
+                                </tree>
+                            </field>
                         </page>
                     </notebook>
                 </sheet>

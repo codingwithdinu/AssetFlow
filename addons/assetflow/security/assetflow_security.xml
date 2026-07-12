@@ -9,7 +9,7 @@
         <!-- Category: AssetFlow -->
         <record id="module_category_assetflow" model="ir.module.category">
             <field name="name">AssetFlow</field>
-            <field name="description">Enterprise Asset & Resource Management</field>
+            <field name="description">Enterprise Asset &amp; Resource Management</field>
             <field name="sequence">50</field>
         </record>
 
