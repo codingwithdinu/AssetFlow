@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Booking Tree -->
+    <record id="view_assetflow_booking_tree" model="ir.ui.view">
+        <field name="name">assetflow.booking.tree</field>
+        <field name="model">assetflow.booking</field>
+        <field name="arch" type="xml">
+            <tree string="Resource Bookings"
+                  decoration-success="state == 'confirmed'"
+                  decoration-muted="state in ('completed', 'cancelled')">
+                <field name="name"/>
+                <field name="asset_id"/>
+                <field name="employee_id"/>
+                <field name="start_datetime"/>
+                <field name="end_datetime"/>
+                <field name="purpose"/>
+                <field name="state" widget="badge"
+                       decoration-warning="state == 'draft'"
+                       decoration-success="state == 'confirmed'"
+                       decoration-info="state == 'completed'"
+                       decoration-danger="state == 'cancelled'"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Booking Form -->
+    <record id="view_assetflow_booking_form" model="ir.ui.view">
+        <field name="name">assetflow.booking.form</field>
+        <field name="model">assetflow.booking</field>
+        <field name="arch" type="xml">
+            <form string="Resource Booking">
+                <header>
+                    <button name="action_confirm" string="✅ Confirm Booking"
+                            type="object" class="btn-primary"
+                            attrs="{'invisible': [('state', '!=', 'draft')]}"/>
+                    <button name="action_complete" string="✔ Mark Completed"
+                            type="object" class="btn-success"
+                            attrs="{'invisible': [('state', '!=', 'confirmed')]}"/>
+                    <button name="action_cancel" string="✕ Cancel"
+                            type="object" class="btn-danger"
+                            attrs="{'invisible': [('state', 'not in', ['draft', 'confirmed'])]}"/>
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="draft,confirmed,completed"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name" readonly="1"/></h1>
+                    </div>
+                    <group>
+                        <group string="Resource">
+                            <field name="asset_id"/>
+                            <field name="purpose"/>
+                        </group>
+                        <group string="Requester">
+                            <field name="employee_id"/>
+                            <field name="department_id" readonly="1"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group string="Schedule">
+                            <field name="start_datetime"/>
+                            <field name="end_datetime"/>
+                        </group>
+                        <group string="Notes">
+                            <field name="notes"/>
+                        </group>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- Calendar View -->
+    <record id="view_assetflow_booking_calendar" model="ir.ui.view">
+        <field name="name">assetflow.booking.calendar</field>
+        <field name="model">assetflow.booking</field>
+        <field name="arch" type="xml">
+            <calendar string="Bookings Calendar"
+                      date_start="start_datetime"
+                      date_stop="end_datetime"
+                      color="employee_id"
+                      mode="month">
+                <field name="asset_id"/>
+                <field name="employee_id"/>
+                <field name="purpose"/>
+            </calendar>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_assetflow_booking" model="ir.actions.act_window">
+        <field name="name">Resource Bookings</field>
+        <field name="res_model">assetflow.booking</field>
+        <field name="view_mode">tree,calendar,form</field>
+    </record>
+
+</odoo>

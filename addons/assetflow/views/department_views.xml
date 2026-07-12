@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Department Tree -->
+    <record id="view_assetflow_department_tree" model="ir.ui.view">
+        <field name="name">assetflow.department.tree</field>
+        <field name="model">assetflow.department</field>
+        <field name="arch" type="xml">
+            <tree string="Departments">
+                <field name="code"/>
+                <field name="name"/>
+                <field name="head_id"/>
+                <field name="location"/>
+                <field name="employee_count"/>
+                <field name="asset_count"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Department Form -->
+    <record id="view_assetflow_department_form" model="ir.ui.view">
+        <field name="name">assetflow.department.form</field>
+        <field name="model">assetflow.department</field>
+        <field name="arch" type="xml">
+            <form string="Department">
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <h1><field name="name" placeholder="Department Name..."/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="code"/>
+                            <field name="head_id"/>
+                            <field name="location"/>
+                        </group>
+                        <group>
+                            <field name="employee_count" readonly="1"/>
+                            <field name="asset_count" readonly="1"/>
+                            <field name="active"/>
+                        </group>
+                    </group>
+                    <group string="Description">
+                        <field name="description" nolabel="1"/>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_assetflow_department" model="ir.actions.act_window">
+        <field name="name">Departments</field>
+        <field name="res_model">assetflow.department</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+</odoo>

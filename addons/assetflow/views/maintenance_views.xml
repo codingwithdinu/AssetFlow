@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Maintenance Tree -->
+    <record id="view_assetflow_maintenance_tree" model="ir.ui.view">
+        <field name="name">assetflow.maintenance.tree</field>
+        <field name="model">assetflow.maintenance</field>
+        <field name="arch" type="xml">
+            <tree string="Maintenance Requests"
+                  decoration-danger="priority == 'critical'"
+                  decoration-warning="priority == 'high'"
+                  decoration-success="state == 'completed'">
+                <field name="name"/>
+                <field name="asset_id"/>
+                <field name="reported_by"/>
+                <field name="department_id"/>
+                <field name="priority" widget="priority"/>
+                <field name="request_date"/>
+                <field name="scheduled_date"/>
+                <field name="technician"/>
+                <field name="state" widget="badge"
+                       decoration-warning="state == 'reported'"
+                       decoration-info="state in ('approved', 'in_progress')"
+                       decoration-success="state == 'completed'"
+                       decoration-danger="state == 'cancelled'"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Maintenance Form -->
+    <record id="view_assetflow_maintenance_form" model="ir.ui.view">
+        <field name="name">assetflow.maintenance.form</field>
+        <field name="model">assetflow.maintenance</field>
+        <field name="arch" type="xml">
+            <form string="Maintenance Request">
+                <header>
+                    <button name="action_approve" string="✅ Approve"
+                            type="object" class="btn-success"
+                            attrs="{'invisible': [('state', '!=', 'reported')]}"
+                            groups="assetflow.group_assetflow_manager"/>
+                    <button name="action_start" string="🔧 Start Repair"
+                            type="object" class="btn-primary"
+                            attrs="{'invisible': [('state', '!=', 'approved')]}"
+                            groups="assetflow.group_assetflow_manager"/>
+                    <button name="action_complete" string="✔ Mark Completed"
+                            type="object" class="btn-success"
+                            attrs="{'invisible': [('state', '!=', 'in_progress')]}"
+                            groups="assetflow.group_assetflow_manager"/>
+                    <button name="action_cancel" string="✕ Cancel"
+                            type="object" class="btn-danger"
+                            attrs="{'invisible': [('state', 'in', ['completed', 'cancelled'])]}"/>
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="reported,approved,in_progress,completed"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name" readonly="1"/></h1>
+                    </div>
+                    <group>
+                        <group string="Asset Info">
+                            <field name="asset_id"/>
+                            <field name="reported_by"/>
+                            <field name="department_id" readonly="1"/>
+                        </group>
+                        <group string="Priority &amp; Schedule">
+                            <field name="priority" widget="priority"/>
+                            <field name="request_date"/>
+                            <field name="scheduled_date"/>
+                            <field name="completion_date" readonly="1"/>
+                        </group>
+                    </group>
+                    <group string="Issue Description">
+                        <field name="issue_description" nolabel="1"/>
+                    </group>
+                    <group>
+                        <group string="Assignment">
+                            <field name="technician"/>
+                            <field name="repair_cost"/>
+                        </group>
+                        <group string="Resolution">
+                            <field name="resolution_notes"/>
+                        </group>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_assetflow_maintenance" model="ir.actions.act_window">
+        <field name="name">Maintenance Requests</field>
+        <field name="res_model">assetflow.maintenance</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+</odoo>

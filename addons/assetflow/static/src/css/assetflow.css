@@ -1,0 +1,47 @@
+/* AssetFlow – Custom Odoo Styles */
+
+/* ─── KPI Dashboard Cards ─────────────────────────────── */
+.assetflow-kpi-card {
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+    color: white;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.assetflow-kpi-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+}
+
+.assetflow-kpi-card h3 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.assetflow-kpi-card p {
+    font-size: 0.9rem;
+    opacity: 0.9;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.assetflow-kpi-total    { background: linear-gradient(135deg, #667eea, #764ba2); }
+.assetflow-kpi-available { background: linear-gradient(135deg, #11998e, #38ef7d); }
+.assetflow-kpi-allocated { background: linear-gradient(135deg, #2193b0, #6dd5ed); }
+.assetflow-kpi-maintenance { background: linear-gradient(135deg, #f7971e, #ffd200); }
+.assetflow-kpi-retired  { background: linear-gradient(135deg, #c94b4b, #4b134f); }
+
+/* ─── Status Badge Colors ─────────────────────────────── */
+.badge-available    { background-color: #28a745 !important; }
+.badge-allocated    { background-color: #17a2b8 !important; }
+.badge-maintenance  { background-color: #ffc107 !important; color: #333 !important; }
+.badge-retired      { background-color: #6c757d !important; }
+.badge-lost         { background-color: #dc3545 !important; }
+
+/* ─── Asset List Enhancements ─────────────────────────── */
+.o_list_view .o_data_row.asset-available td { border-left: 4px solid #28a745; }
+.o_list_view .o_data_row.asset-maintenance td { border-left: 4px solid #ffc107; }
+.o_list_view .o_data_row.asset-retired td { border-left: 4px solid #dc3545; }

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Transfer Tree -->
+    <record id="view_assetflow_transfer_tree" model="ir.ui.view">
+        <field name="name">assetflow.transfer.tree</field>
+        <field name="model">assetflow.transfer</field>
+        <field name="arch" type="xml">
+            <tree string="Transfer Requests"
+                  decoration-success="state == 'completed'"
+                  decoration-warning="state == 'submitted'"
+                  decoration-info="state == 'approved'">
+                <field name="name"/>
+                <field name="asset_id"/>
+                <field name="from_department_id"/>
+                <field name="to_department_id"/>
+                <field name="request_date"/>
+                <field name="transfer_date"/>
+                <field name="state" widget="badge"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Transfer Form -->
+    <record id="view_assetflow_transfer_form" model="ir.ui.view">
+        <field name="name">assetflow.transfer.form</field>
+        <field name="model">assetflow.transfer</field>
+        <field name="arch" type="xml">
+            <form string="Transfer Request">
+                <header>
+                    <button name="action_submit" string="Submit"
+                            type="object" class="btn-primary"
+                            attrs="{'invisible': [('state', '!=', 'draft')]}"/>
+                    <button name="action_approve" string="✅ Approve"
+                            type="object" class="btn-success"
+                            attrs="{'invisible': [('state', '!=', 'submitted')]}"
+                            groups="assetflow.group_assetflow_manager"/>
+                    <button name="action_complete" string="✔ Complete Transfer"
+                            type="object" class="btn-primary"
+                            attrs="{'invisible': [('state', '!=', 'approved')]}"
+                            groups="assetflow.group_assetflow_manager"/>
+                    <button name="action_reject" string="✕ Reject"
+                            type="object" class="btn-danger"
+                            attrs="{'invisible': [('state', 'not in', ['submitted', 'approved'])]}"
+                            groups="assetflow.group_assetflow_manager"/>
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="draft,submitted,approved,completed"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name" readonly="1"/></h1>
+                    </div>
+                    <group>
+                        <group string="Asset">
+                            <field name="asset_id"/>
+                        </group>
+                        <group string="Dates">
+                            <field name="request_date"/>
+                            <field name="transfer_date" readonly="1"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group string="From">
+                            <field name="from_department_id"/>
+                            <field name="from_employee_id"/>
+                        </group>
+                        <group string="To">
+                            <field name="to_department_id"/>
+                            <field name="to_employee_id"/>
+                        </group>
+                    </group>
+                    <group string="Reason">
+                        <field name="reason" nolabel="1"/>
+                    </group>
+                    <group>
+                        <field name="approved_by" readonly="1"/>
+                        <field name="notes"/>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_assetflow_transfer" model="ir.actions.act_window">
+        <field name="name">Transfer Requests</field>
+        <field name="res_model">assetflow.transfer</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+</odoo>

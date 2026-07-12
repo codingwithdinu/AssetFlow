@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- PDF Report: Asset List -->
+    <record id="report_assetflow_asset_pdf" model="ir.actions.report">
+        <field name="name">Asset Report</field>
+        <field name="model">assetflow.asset</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">assetflow.report_asset_template</field>
+        <field name="report_file">assetflow.report_asset_template</field>
+        <field name="binding_model_id" ref="model_assetflow_asset"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <!-- QWeb Template: Asset Report -->
+    <template id="report_asset_template">
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+                <div class="page">
+                    <h2>AssetFlow – Asset Report</h2>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Tag</th>
+                                <th>Name</th>
+                                <th>Category</th>
+                                <th>Department</th>
+                                <th>Status</th>
+                                <th>Purchase Date</th>
+                                <th>Purchase Price</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-foreach="docs" t-as="asset">
+                                <tr>
+                                    <td><t t-esc="asset.asset_tag"/></td>
+                                    <td><t t-esc="asset.name"/></td>
+                                    <td><t t-esc="asset.category_id.name"/></td>
+                                    <td><t t-esc="asset.department_id.name"/></td>
+                                    <td><t t-esc="asset.state"/></td>
+                                    <td><t t-esc="asset.purchase_date"/></td>
+                                    <td>₹<t t-esc="asset.purchase_price"/></td>
+                                </tr>
+                            </t>
+                        </tbody>
+                    </table>
+                </div>
+            </t>
+        </t>
+    </template>
+
+</odoo>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <!-- ═══════════════════════════════════════════════
+             SECURITY GROUPS
+        ═══════════════════════════════════════════════ -->
+
+        <!-- Category: AssetFlow -->
+        <record id="module_category_assetflow" model="ir.module.category">
+            <field name="name">AssetFlow</field>
+            <field name="description">Enterprise Asset & Resource Management</field>
+            <field name="sequence">50</field>
+        </record>
+
+        <!-- Group: Employee (base) -->
+        <record id="group_assetflow_employee" model="res.groups">
+            <field name="name">Employee</field>
+            <field name="category_id" ref="module_category_assetflow"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+            <field name="comment">Can view assigned assets, raise maintenance, make bookings.</field>
+        </record>
+
+        <!-- Group: Department Head -->
+        <record id="group_assetflow_dept_head" model="res.groups">
+            <field name="name">Department Head</field>
+            <field name="category_id" ref="module_category_assetflow"/>
+            <field name="implied_ids" eval="[(4, ref('group_assetflow_employee'))]"/>
+            <field name="comment">Can view department assets, approve allocations, request transfers.</field>
+        </record>
+
+        <!-- Group: Asset Manager -->
+        <record id="group_assetflow_manager" model="res.groups">
+            <field name="name">Asset Manager</field>
+            <field name="category_id" ref="module_category_assetflow"/>
+            <field name="implied_ids" eval="[(4, ref('group_assetflow_dept_head'))]"/>
+            <field name="comment">Full asset management: register, allocate, transfer, maintenance, audits.</field>
+        </record>
+
+        <!-- Group: Administrator -->
+        <record id="group_assetflow_admin" model="res.groups">
+            <field name="name">Administrator</field>
+            <field name="category_id" ref="module_category_assetflow"/>
+            <field name="implied_ids" eval="[(4, ref('group_assetflow_manager'))]"/>
+            <field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>
+            <field name="comment">Full system access including settings, reports, and user management.</field>
+        </record>
+
+    </data>
+</odoo>

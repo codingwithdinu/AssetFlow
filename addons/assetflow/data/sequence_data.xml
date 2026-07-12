@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <!-- Asset Tag sequence: AF-0001, AF-0002 ... -->
+        <record id="seq_assetflow_asset" model="ir.sequence">
+            <field name="name">Asset Tag Sequence</field>
+            <field name="code">assetflow.asset.sequence</field>
+            <field name="prefix">AF-</field>
+            <field name="padding">4</field>
+            <field name="number_next">1</field>
+            <field name="number_increment">1</field>
+        </record>
+
+        <!-- Allocation: ALLOC-0001 -->
+        <record id="seq_assetflow_allocation" model="ir.sequence">
+            <field name="name">Allocation Sequence</field>
+            <field name="code">assetflow.allocation.sequence</field>
+            <field name="prefix">ALLOC-</field>
+            <field name="padding">4</field>
+            <field name="number_next">1</field>
+            <field name="number_increment">1</field>
+        </record>
+
+        <!-- Transfer: TRF-0001 -->
+        <record id="seq_assetflow_transfer" model="ir.sequence">
+            <field name="name">Transfer Sequence</field>
+            <field name="code">assetflow.transfer.sequence</field>
+            <field name="prefix">TRF-</field>
+            <field name="padding">4</field>
+            <field name="number_next">1</field>
+            <field name="number_increment">1</field>
+        </record>
+
+        <!-- Booking: BK-0001 -->
+        <record id="seq_assetflow_booking" model="ir.sequence">
+            <field name="name">Booking Sequence</field>
+            <field name="code">assetflow.booking.sequence</field>
+            <field name="prefix">BK-</field>
+            <field name="padding">4</field>
+            <field name="number_next">1</field>
+            <field name="number_increment">1</field>
+        </record>
+
+        <!-- Maintenance: MNT-0001 -->
+        <record id="seq_assetflow_maintenance" model="ir.sequence">
+            <field name="name">Maintenance Sequence</field>
+            <field name="code">assetflow.maintenance.sequence</field>
+            <field name="prefix">MNT-</field>
+            <field name="padding">4</field>
+            <field name="number_next">1</field>
+            <field name="number_increment">1</field>
+        </record>
+
+        <!-- Audit: AUD-0001 -->
+        <record id="seq_assetflow_audit" model="ir.sequence">
+            <field name="name">Audit Sequence</field>
+            <field name="code">assetflow.audit.sequence</field>
+            <field name="prefix">AUD-</field>
+            <field name="padding">4</field>
+            <field name="number_next">1</field>
+            <field name="number_increment">1</field>
+        </record>
+
+    </data>
+</odoo>

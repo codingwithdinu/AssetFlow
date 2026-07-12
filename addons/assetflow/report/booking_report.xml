@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- PDF Report: Booking -->
+    <record id="report_assetflow_booking_pdf" model="ir.actions.report">
+        <field name="name">Booking Report</field>
+        <field name="model">assetflow.booking</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">assetflow.report_booking_template</field>
+        <field name="report_file">assetflow.report_booking_template</field>
+        <field name="binding_model_id" ref="model_assetflow_booking"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <template id="report_booking_template">
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+                <div class="page">
+                    <h2>AssetFlow – Booking Report</h2>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Reference</th>
+                                <th>Resource</th>
+                                <th>Booked By</th>
+                                <th>From</th>
+                                <th>To</th>
+                                <th>Purpose</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-foreach="docs" t-as="bk">
+                                <tr>
+                                    <td><t t-esc="bk.name"/></td>
+                                    <td><t t-esc="bk.asset_id.name"/></td>
+                                    <td><t t-esc="bk.employee_id.name"/></td>
+                                    <td><t t-esc="bk.start_datetime"/></td>
+                                    <td><t t-esc="bk.end_datetime"/></td>
+                                    <td><t t-esc="bk.purpose"/></td>
+                                    <td><t t-esc="bk.state"/></td>
+                                </tr>
+                            </t>
+                        </tbody>
+                    </table>
+                </div>
+            </t>
+        </t>
+    </template>
+
+</odoo>
